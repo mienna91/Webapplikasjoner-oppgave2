@@ -93,11 +93,11 @@ html, body {
 
 #todoSection {
     grid-area: todo;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    overflow: hidden;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: 1fr;
+    gap: 10px;
+    max-height: 286px;
 }
 
 #todoSection button:hover {
