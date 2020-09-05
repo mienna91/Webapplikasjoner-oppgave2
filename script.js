@@ -45,7 +45,7 @@ var author;
 
 
 function handleSubmission(event) {
-    event.preventdefault();
+    event.preventDefault();
     let todoData = {};
     
     Array.from(event.target.children).forEach(childElem => {
