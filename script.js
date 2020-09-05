@@ -45,7 +45,7 @@ var author;
 
 
 function handleSubmission(event) {
-    
+    event.preventdefault();
     let todoData = {};
     
     Array.from(event.target.children).forEach(childElem => {
@@ -56,19 +56,12 @@ function handleSubmission(event) {
 
     console.log(todoData[0]);
     renderCardContent(todoData);
-    event.preventdefault();
 }
 
 
 function renderCardContent (formData) {
     document.getElementById("todoSection").insertAdjacentHTML("beforeend", template(formData));
 }
-
-
-
-
-
-
 
 function template(data) {
     return `
