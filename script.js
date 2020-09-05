@@ -25,11 +25,6 @@ closeBtn.addEventListener("click", function(event) {
     modal.style.display = "none";
 });
 
-window.onclick = function(event) {
-    if(event.target == modal)
-        modal.style.display = "none";
-};
-
 //Keeps track of how many characters the user has left in the description input field.
 descriptionCounter.oninput = handleInput;
 
@@ -45,12 +40,9 @@ var authorInput = document.getElementById("todoAuthor");
 var submission = document.getElementById("todoCreateBtn");
 
 
-var title;
-var description;
-var author;
-
-
-
+//Event handler that prevents the form from submiting, iterates through
+//the child elements of the modal and sets the datas in the object,
+//renders the content and closes the modal
 function handleSubmission(event) {
     event.preventDefault();
     let todoData = {};
@@ -66,10 +58,13 @@ function handleSubmission(event) {
 }
 
 
+//Inserts the new todo card at the beginning of the cardlist display
 function renderCardContent (formData) {
+
     document.getElementById("todoSection").insertAdjacentHTML("afterbegin", template(formData));
 }
 
+//The cardlist template
 function template(data) {
     return `
     <section class="todoContainer">
@@ -84,6 +79,7 @@ function template(data) {
     </section> `
 }
 
+//Function that empties the inputs in the modal window
 function emptyModalInputs() {
     document.getElementById("todoTitle").value = null;
     document.getElementById("todoDescription").value = null;
