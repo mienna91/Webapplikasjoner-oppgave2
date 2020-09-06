@@ -18,19 +18,13 @@
                 </button>
             </section>
             <section id="todoSection">
-                <section class="todoContainer">
-                    <ul class="todoList">
-                        <li class="todoTitle">Tittel</li>
-                        <li class="todoDescription">Beskrivelse</li>
-                        <li class="todoBtns">
-                            <button class="completeBtn">Complete</button>
-                            <button class="deleteBtn">Delete</button>
-                        </li>
-                    </ul>
-                </section>
             </section>
             <section id="completeSection">
                 <h4 id="completeTitle">Completed todos</h4>
+                <form id="formComplete">
+                    <label for="filterCheckBox" id="checkBoxLbl">Filter by date</label>
+                    <input type="checkbox" name="filterCheckBox" id="filterCheckbox">
+                </form>
                 <table id="completeTable">
                     <tr id="tblHeader">    
                         <th>Title</th>
@@ -48,11 +42,11 @@
                 <div id="modalContent">
                     <form id="newTodo">
                         <label for="title">Title</label>
-                        <input type="text" name="title" id="todoTitle">
+                        <input type="text" name="title" id="todoTitle" autocomplete="off" maxlength="20">
                         <label for="description" id="descriptionLabel">Description <p id="count"> (30 Characters left)</p></label>
-                        <input type="text" name="description" id="todoDescription" maxlength="30" autocomplete="">
+                        <input type="text" name="description" id="todoDescription" maxlength="30" autocomplete="off">
                         <label for="author">Author</label>
-                        <input type="text" name="author" id="todoAuthor">
+                        <input type="text" name="author" id="todoAuthor" autocomplete="off" maxlength="20">
                         <Button id="todoCreateBtn">Create</Button>
                     </form>
                 </div>

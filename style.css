@@ -47,7 +47,7 @@ html, body {
 }
 
 #contentWrapper #todoSection button:hover {
-    background-color: yellow;
+    border: 3px dotted #3a7999;
 }
 
 #todoBtnSection {
@@ -110,7 +110,7 @@ html, body {
     grid-template-rows: 22px 0.2fr 1fr;
     grid-template-areas: 
             "title . ."
-            ". . ."
+            ". . form"
             "table table table";
     color: #333333;
 }
@@ -132,7 +132,7 @@ html, body {
     white-space: nowrap;
     overflow: hidden;
     max-width: 150px;
-    color: #E6E6E6;
+    color: rgb(204, 204, 204);
 }
 
 #completeTable tr {
@@ -263,8 +263,7 @@ html, body {
     width: 282px;
     box-shadow: 0px 2px 11px -4px rgba(93,211,216,1);
     min-width: 282px;
-    margin-right: 12px;
-    margin-left: 12px;
+    
 }
 
 .todoList {
@@ -288,8 +287,15 @@ html, body {
     text-overflow: ellipsis;
     white-space: normal;
     overflow: hidden;
-    height: 62px;
-    margin-bottom: 10px;
+    height: 50px;
+}
+
+.todoAuthor {
+    font-size: 11px;
+    font-weight: bold;
+    color: #333333;
+    height: 10px;
+    margin-bottom: 15px;
 }
 
 .todoBtn {
@@ -320,4 +326,15 @@ html, body {
     color:white;
     font-weight: 600;
     font-size: 11px;
+}
+
+#checkBoxLbl {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(204, 204, 204);
+}
+
+#formComplete {
+    grid-area: form;
+    margin-top: 20px;
+    justify-self: right;
 }
