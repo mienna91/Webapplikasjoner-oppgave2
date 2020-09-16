@@ -3,51 +3,43 @@ window.onload = startup;
 
 function startup() {
 
-    var form = document.getElementById("newTodo");
+    let form = document.querySelector("#newTodo");
     form.addEventListener("submit", handleSubmission);
 
 }
 
 
-var modal = document.getElementById("modalWindow");
-const btn = document.getElementById("todoBtn");
-var descriptionCounter = document.getElementById("todoDescription");
-var descriptionLabel = document.getElementById("count");
-var closeBtn = document.getElementById("closeBtn");
+let modal = document.querySelector("#modalWindow");
+let descriptionCounter = document.querySelector("#todoDescription");
+let descriptionLabel = document.querySelector("#count");
+let closeBtn = document.querySelector("#closeBtn");
 
 //displays the modal window
-btn.addEventListener("click", function(event) { 
+btn.addEventListener("click", (event) => { 
     modal.style.display = "block";
     descriptionLabel.textContent = ` (${30} Characters left)`
     emptyModalInputs();
 });
 
 //closes the modal window, when "X" button is clicked (I know it's not semantically a button)
-closeBtn.addEventListener("click", function(event) {
+closeBtn.addEventListener("click", (event) => {
     modal.style.display = "none";
 });
 
 //Keeps track of how many characters the user has left in the description input field.
-descriptionCounter.oninput = handleInput;
-
-function handleInput(event) {
-    var charCount = 30;
+descriptionCounter.oninput = (event) => {
+    let charCount = 30;
     
     descriptionLabel.textContent = ` (${charCount - event.target.value.length} Characters left)`
 }
-
-//Storing new todos in a collection and creating the todo card with the corresponding content
-var titleInput = document.getElementById("todoTitle");
-var authorInput = document.getElementById("todoAuthor");
-var submission = document.getElementById("todoCreateBtn");
 
 
 //Event handler that prevents the form from submiting, iterates through
 //the child elements of the modal and sets the datas in the object,
 //renders the content and closes the modal
-function handleSubmission(event) {
+let handleSubmission = (event) => {
     event.preventDefault();
-    var todoData = {};
+    let todoData = {};
     
     Array.from(event.target.children).forEach(childElem => {
         if(childElem.nodeName === "INPUT") {
@@ -55,21 +47,20 @@ function handleSubmission(event) {
         }
     })
 
-    console.log(todoData);
     modal.style.display = "none";
     renderCardContent(todoData);
 }
 
 
 //Inserts the new todo card at the beginning of the cardlist display
-function renderCardContent (formData) {
+let renderCardContent = (formData) => {
 
-    document.getElementById("todoSection").insertAdjacentHTML("afterbegin", template(formData));
+    document.querySelector("#todoSection").insertAdjacentHTML("afterbegin", template(formData));
     addListenersToCardBtns();
 }
 
 //The cardlist template
-function template(data) {
+let template = (data) => {
     return `
     <section class="todoContainer">
         <ul class="todoList">
@@ -86,9 +77,9 @@ function template(data) {
 
 //function to add seperate listeners to the complete and deletebtns 
 //in the todo cards
-function addListenersToCardBtns() {
-    let completeBtns = document.getElementsByClassName("completeBtn");
-    let deleteBtns = document.getElementsByClassName("deleteBtn");
+let addListenersToCardBtns = () => {
+    let completeBtns = document.querySelectorAll(".completeBtn");
+    let deleteBtns = document.querySelectorAll(".deleteBtn");
 
     for(let x = 0; x < completeBtns.length; x++) {
         completeBtns[x].addEventListener("click", completeTodoTuple);
@@ -97,20 +88,21 @@ function addListenersToCardBtns() {
 }
 
 //Function that deletes a todo card
-function deleteTodo() {
-    this.parentNode.parentNode.parentNode.remove();
+let deleteTodo = (e) => {
+    // this.parentNode.parentNode.parentNode.remove();
+    e.target.parentNode.parentNode.parentNode.remove();
 }
 
 
 //Function that empties the inputs in the modal window
-function emptyModalInputs() {
-    document.getElementById("todoTitle").value = null;
-    document.getElementById("todoDescription").value = null;
-    document.getElementById("todoAuthor").value = null;
+let emptyModalInputs = () => {
+    document.querySelector("#todoTitle").value = null;
+    document.querySelector("#todoDescription").value = null;
+    document.querySelector("#todoAuthor").value = null;
 }
 
 //borrowed this function from stackoverflow, just for cleaner date format.
-function dateFormatter() {
+let dateFormatter = () => {
     const date = new Date();
     const format = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' });
     const [{ value: month },,{ value: day },,{ value: year }] = format .formatToParts(date )
@@ -118,7 +110,7 @@ function dateFormatter() {
 }
 
 //template for the complete table rows
-function completeTodoTupleTemplate(formData) {
+let completeTodoTupleTemplate = (formData) => {
 
     return `
     <tr>
@@ -133,24 +125,19 @@ function completeTodoTupleTemplate(formData) {
 //eventhandler that collects todo card data and creates the
 //complete entry in the complete table and removes the
 //corresponding todo card from the todoSection
-function completeTodoTuple() {
-    let completeTitle = this.parentNode.parentNode.querySelector(".todoTitle").innerHTML;
-    let completeAuthor = this.parentNode.parentNode.querySelector(".todoAuthor").innerHTML;
-    let completeDescription = this.parentNode.parentNode.querySelector(".todoDescription").innerHTML;
-    let completedData = {};
+let completeTodoTuple = (e) => {
+    let completedData = {
+        title: e.target.parentNode.parentNode.querySelector(".todoTitle").innerHTML,
+        author: e.target.parentNode.parentNode.querySelector(".todoAuthor").innerHTML,
+        description: e.target.parentNode.parentNode.querySelector(".todoDescription").innerHTML
+    };
 
-    completedData["title"] = completeTitle;
-    completedData["author"] = completeAuthor;
-    completedData["description"] = completeDescription;
-
-    
     createCompleteTodoTuple(completedData);
-    console.log(completedData);
-    this.parentNode.parentNode.parentNode.remove();
+    e.target.parentNode.parentNode.parentNode.remove();
 }
 
 //function that inserts entry into the complete table
-function createCompleteTodoTuple(data) {
-    document.getElementById("completeTable").insertAdjacentHTML("beforeend", completeTodoTupleTemplate(data));
+let createCompleteTodoTuple = (data) =>{
+    document.querySelector("#completeTable").insertAdjacentHTML("beforeend", completeTodoTupleTemplate(data));
     addListenersToCardBtns();
 }
