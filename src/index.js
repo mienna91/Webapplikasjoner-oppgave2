@@ -10,6 +10,7 @@ function startup() {
 
 
 let modal = document.querySelector("#modalWindow");
+const btn = document.querySelector("#todoBtn");
 let descriptionCounter = document.querySelector("#todoDescription");
 let descriptionLabel = document.querySelector("#count");
 let closeBtn = document.querySelector("#closeBtn");
