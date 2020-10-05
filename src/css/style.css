@@ -1,0 +1,341 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+
+#header1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 63px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 2px 5px 3px rgba(227,223,227,1);
+    grid-area: head;
+}
+
+#header1 h3,p {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #333333;
+    font-size: 20px;
+}
+
+#header1 h3 {
+    font-weight: 999;
+}
+
+#header1 p {
+    font-weight: 400;
+}
+#contentWrapper {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 926px 1fr;
+    grid-template-rows: 63px 1fr 1fr 1fr;
+    grid-template-areas: 
+            "head head head"
+            ". btn ."
+            ". todo ."
+            ". complete .";
+}
+
+#contentWrapper #todoSection button:hover {
+    border: 3px dotted #3a7999;
+}
+
+#todoBtnSection {
+    display: grid;
+    grid-template-areas:
+            ". . ."
+            ". . ."
+            "btn . .";
+    grid-template-rows: 38.5px 38.5px 51px;
+}
+
+#todoBtn {
+    border: 1px solid #333333;
+    width: 183px;
+    height: 51px;
+    display: flex;
+    flex-direction: row;
+    grid-area: btn;
+    justify-content: center;
+    background-color: white;
+    font-weight: 500;
+}
+
+#todoBtn:hover {
+    background-color: #E6E6E6;
+}
+
+#todoBtn p {
+    margin-top: 8px;
+    font-size: 23px;
+}
+
+#todoBtn img {
+    margin: 14.8px 2px 14.8px 27.9px;
+    width: 21.2px;
+    height: 21.2px;
+}
+
+
+#todoBtnSection {
+    grid-area: btn;
+}
+
+#todoSection {
+    grid-area: todo;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: 1fr;
+    gap: 10px;
+    max-height: 286px;
+}
+
+#todoSection button:hover {
+    opacity: 1;
+}
+
+#completeSection {
+    grid-area: complete;
+    display: grid;
+    grid-template-rows: 22px 0.2fr 1fr;
+    grid-template-areas: 
+            "title . ."
+            ". . form"
+            "table table table";
+    color: #333333;
+}
+
+#completeTable {
+    grid-area: table;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+    color: #333333;
+    table-layout: auto;
+}
+
+#completeTable td {
+    border-width: 0;
+    text-align: left;
+    padding: 15px 40px 15px 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 150px;
+    color: rgb(204, 204, 204);
+}
+
+#completeTable tr {
+    text-align: center;
+    border-bottom: 1px solid #00000019;
+}
+
+#completeTable th {
+    background-color: #E6E6E6;
+    text-align: left;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#completeTable #tblHeader {
+    line-height: 31px;
+    max-height: 31px;
+    
+}
+
+#completeTitle {
+    grid-area: title; 
+    margin: 0;
+}
+
+#modalWindow {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 600px;
+    top: 195px;
+    bottom: 200px;
+    width: 326px;
+    height: 378px; 
+    overflow: hidden;
+    background-color:white;
+    opacity: 1;
+    box-shadow: 0px 2px 11px -4px rgba(0,0,0,1);
+    border-radius: 8px;
+}
+
+#modalContent {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+}
+
+#modalContent p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #333333;
+    margin: 0;
+}
+
+#modalContent #descriptionLabel {
+    display: flex;
+    flex-direction: row;
+}
+
+#newTodo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 750;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 10px;
+}
+
+#newTodo input {
+    width: 241px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #B6B6B6;
+    padding: 0;
+    font-size: 16px;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 20px;
+}
+
+
+#newTodo #todoCreateBtn {
+    width: 253px;
+    height: 32.07px;
+    border-radius: 0;
+    background-color: #56D4C2;
+    border: 0;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+#newTodo #todoCreateBtn:hover {
+    background-color: rgb(40, 136, 122);
+}
+
+#newTodoHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #00000019;
+    width: 326px;
+    height: 37px;
+    margin-bottom: 15px;
+}
+
+#newTodoHeader span {
+    color: #B6B6B6;
+    font-size: 18px;
+    margin: 7px 15px 0px 0px;
+}
+
+#newTodoHeader span:hover {
+    color: #333333;
+}
+
+#newTodoHeader h5 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px 0px 0px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.todoContainer {
+    height: 163px;
+    width: 282px;
+    box-shadow: 0px 2px 11px -4px rgba(93,211,216,1);
+    min-width: 282px;
+    
+}
+
+.todoList {
+    list-style-type: none;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.todoTitle {
+    font-size: 16px;
+    font-weight: 800;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.todoDescription {
+    font-size: 14px;
+    color: #333333;
+    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: hidden;
+    height: 50px;
+}
+
+.todoAuthor {
+    font-size: 11px;
+    font-weight: bold;
+    color: #333333;
+    height: 10px;
+    margin-bottom: 15px;
+}
+
+.todoBtn {
+    height: 15px;
+}
+
+.completeBtn {
+    width: 77px;
+    height: 23px;
+    float: right;
+    margin-right: 20px;
+    margin-left: 5px;
+    background-color: #56D4C2;
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+.deleteBtn {
+    width: 77px;
+    height: 23px;
+    float: right;
+    background-color:#EF3340;
+    border-radius: 5px;
+    border: 0;
+    color:white;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+#checkBoxLbl {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(204, 204, 204);
+}
+
+#formComplete {
+    grid-area: form;
+    margin-top: 20px;
+    justify-self: right;
+}
